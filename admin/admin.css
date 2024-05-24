@@ -1,0 +1,195 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.wrapper{
+    padding: 1%;
+    width: 99%;
+    margin: 0 auto;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+
+.tbl-full{
+    width: 100%;
+}
+
+.tbl-full a{
+    color: black;
+}
+
+.tbl-30{
+    width: 30%;
+}
+
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1%;
+}
+
+.btn-primary{
+    background-color: #1e90ff;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s linear;
+    border-radius: 4px;
+}
+
+.btn-primary:hover{
+    background-color: #3742fa;
+}
+
+.btn-secondary{
+    background-color: #48e078;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-secondary:hover{
+    background-color: #10de66;
+}
+
+.btn-danger{
+    background-color: #fc6178;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-danger:hover{
+    background-color: #ff4757;
+}
+
+/* CSS for Menu */
+.menu{
+    border-bottom: 1px solid grey;
+    background-color: white;
+}
+
+.menu ul{
+    list-style-type: none;
+}
+.menu ul li{
+    display: inline;
+    padding: 1%;
+}
+.menu ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color:  #e8491d;
+}
+.menu ul li a:hover{
+    color:  #e43809;
+}
+
+
+/* CSS for Main Content */
+.main-content{
+    background-color: #f1f2f6;
+    padding: 3% 0;
+}
+
+.col-1{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    border-radius: 20px;
+    border: 2px solid #e8491d;
+    transition: 0.4s ease-in;
+    cursor: pointer;
+}
+.col-1:hover
+{
+    background-color: #e8491d;
+    color: white;
+}
+.col-2{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    border-radius: 20px;
+    border: 2px solid #e8491d;
+    transition: 0.4s ease-in;
+    cursor: pointer;
+}
+.col-2:hover
+{
+    background-color: purple;
+    border: 2px solid purple;
+    color: white;
+}
+.col-3{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    border-radius: 20px;
+    border: 2px solid #e8491d;
+    transition: 0.4s ease-in;
+    cursor: pointer;
+}
+.col-3:hover
+{
+    background-color: blue;
+    border: 2px solid blue;
+    color: white;
+}
+.col-4{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    border-radius: 20px;
+    border: 2px solid #e8491d;
+    transition: 0.4s ease-in;
+    cursor: pointer;
+}
+.col-4:hover
+{
+    background-color: green;
+    border: 2px solid green;
+    color: white;
+}
+.url
+{
+    font-size: 20px;
+}
+.url a
+{
+    text-decoration: none;
+    transition: 0.2s ease-in;
+}
+.url a:hover
+{
+    color: #e8491d;
+}
+/* CSS for Footer */
+.footer {
+    background-color: #e8491d;
+    color: white;
+}
