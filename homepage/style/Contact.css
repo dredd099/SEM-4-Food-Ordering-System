@@ -1,0 +1,100 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: url('../../images/reception.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(4px);
+}
+.banner
+{
+    width: auto;
+    height: 450px;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin: 40 20px;
+}
+.banner h4
+{
+    padding-top: 20px;
+    padding-left: 40px;
+    font-size: 75px;
+}
+.text
+{
+    margin-left: -200px;
+}
+.text p
+{
+    font-size: 26px;
+    padding-left: 50px;
+    color: white;
+}
+
+.contact-section
+{
+    margin: 40 20px;
+    padding-left: 40px;
+    color: white;
+}
+.banner img
+{
+    width: inherit;
+    /* margin-left: 450px; */
+    height: 400px;
+    box-shadow: 0 10px 30px 10px rgba(0, 0, 0, 1);
+}
+
+.text a
+{
+    position: relative;
+    color: white;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.text a::after {
+    content: '';
+    position: absolute;
+    background-color: #e8491d;
+    width: 0;
+    height: 3px;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    transition: all 0.3s ease;
+}
+
+.text a:hover {
+    color: #e8491d;
+}
+
+.text a:hover::after {
+    width: 100%;
+}
+
+.contact-section .contact-info a,
+.social-links a
+{
+    text-decoration: none;
+    color: white;
+    transition: 0.2s ease-in;
+}
+.contact-section .contact-info a:hover,
+.social-links a:hover
+{
+    color: #e8491d;
+}
+.social-links
+{
+    display: flex;
+    justify-content: space-around;
+}

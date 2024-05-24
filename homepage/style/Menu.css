@@ -1,0 +1,226 @@
+body{
+    background-image: url('../../images/menubg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(4px);
+    font-family: system-ui;
+    overflow-x: hidden;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.dine{
+    padding-bottom: 65px;
+}
+.dine h1
+{
+    text-align: center;
+    font-size: 60px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    color: white;
+    animation: glow 3.5s ease-in;
+    animation-duration: infinite;
+}
+
+@keyframes glow
+{
+    0% {color:transparent}
+    100% {color: white;}
+}
+.products .box-container
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.box
+{
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    position: relative;
+    padding:20px;
+    background-color: var(--white);
+    width: 300px;
+    align-items: stretch;
+    margin-bottom: 50px;
+}
+.box img
+{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid wheat;
+}
+.box .name
+{
+    color: white;
+    padding-top: 10px;
+    font-size: 22px;
+}
+.box .price
+{
+    color: white;
+    padding-top: 10px;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: #e8491d;
+    font-size: 18px;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px 40px;
+}
+.box .description
+{
+    color: wheat;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.box .btn{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #e8491d;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 7px;
+    margin-left: 8px;
+    transition: background-color 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+.box .btn:hover{
+    background-color: white;
+    color: #e8491d;
+    border: 2px solid;
+}
+.box .quantity
+{
+    height: 35px;
+    width: 40px;
+    color: black;
+    font-size: 18px;
+    background-color: white;
+    border: 0.4px solid #b8aeae;
+    border-radius: 10px;
+}
+/* .number input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+} */
+.heading p
+{
+    margin-left: 100px;
+    color: white;
+}
+table {
+    margin-left: 100px;
+    width: 86%;
+    backdrop-filter: blur(0.8px);
+    background-color: transparent;
+}
+
+th{
+    border-bottom: 1px solid wheat;
+    padding: 8px;
+    text-align: left;
+    color: white;
+    font-size: 22px;
+}
+td {
+
+    padding: 8px;
+    text-align: left;
+    color: white;
+    font-size: 18px;
+}
+
+.cart .heading .disabled
+{
+    pointer-events: none;
+    background-color: red;
+    opacity: 0.5;
+    user-select: none;
+}
+.cart .heading .up_cart
+{
+    height: 20px;
+    width: 40px;
+    color: black;
+    font-size: 16px;
+    background-color: white;
+    border: 0.4px solid #b8aeae;
+    border-radius: 2px;
+}
+.cart .heading .option-btn
+{
+    color: white;
+    margin: 12px 0;
+    background-color: rgb(42, 42, 205);
+    font-size: 14px;
+    width: 80px;
+    height: 35px;
+    border-radius: 8px;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+    border: 2px solid rgb(42, 42, 205);
+}
+.cart .heading .option-btn:hover
+{
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+}
+.cart .heading .delete-btn
+{
+    font-size: 14px;
+    padding:10px;
+    width: 110px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    border-radius: 8px;
+}
+.cart .heading .delete-btn:hover
+{
+    color: white;
+    margin: 12px 0;
+    background-color: rgb(152, 4, 4);
+    width: 100px;
+    height: 35px;
+}
+.cart .heading .pc-btn
+{
+    margin-top: 20px;
+    font-size: 14px;
+    padding:10px;
+    width: 110px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(42, 42, 205);
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    border-radius: 8px;
+}
+.cart .heading .pc-btn:hover
+{
+    color: blue;
+    margin: 12px 0;
+    background-color: white;
+    width: 100px;
+    height: 35px;
+}

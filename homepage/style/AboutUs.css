@@ -1,0 +1,215 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* background-image: url('about.jpg');
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed; */
+    background-color: rgb(23, 23, 23);
+    backdrop-filter: blur(6px);
+}
+
+.top
+{
+    padding-top: 10px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    /* justify-content: space-evenly; */
+    padding-top: 25px;
+    background-image: url('../../images/about.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: 
+        linear-gradient(to left, rgba(255, 255, 255, 0.3), black), /* Faded effect from left to right */
+        url('../../images/about.jpg') center/cover; /* Your image */
+    background-blend-mode: darken;
+}
+.top h2 {
+    padding-left: 10rem;
+    color: white;
+    font-size: 5rem;
+}
+
+/* .top img
+{
+    width: inherit;
+    height: 450px;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    background-image: url('about.jpg');
+    background
+} */
+.story
+{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 65px;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.story .left
+{
+    margin-left: 20px;
+    margin-right: 60px;
+    width: 600px;
+    color: white;
+}
+
+.story .left h2
+{
+    font-size: 2.5rem;
+    color: wheat;
+}
+.story .right
+{
+    width: 40rem;
+    height: 20rem;
+    background-image: url('../../images/front.jpg');
+    background-size: cover;
+    border: 2px solid wheat;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* animation: imageLoop 2s linear; */
+    transition: background-image 1s linear;
+}
+.meet
+{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 65px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.meet .left
+{
+
+    width: 40rem;
+    height: 20rem;
+    background-image: url('../../images/fire.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid wheat;
+    margin-top: 40px;
+}
+.meet .right
+{
+    margin-right: 20px;
+    margin-left: 60px;
+    width: 600px;
+    color: white;
+    text-align: justify;
+}
+.meet .right h2
+{
+    font-size: 2.5rem;
+    color: wheat;
+}
+
+.cert
+{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 65px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.cert .left
+{
+    margin-left: 20px;
+    margin-right: 60px;
+    width: 600px;
+    color: white;
+    text-align: justify;
+}
+
+.cert .left h2
+{
+    font-size: 2.5rem;
+    color: wheat;
+}
+.cert .right
+{
+    width: 40rem;
+    height: 20rem;
+    background-image: url('../../images/award.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid wheat;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    /* animation: imageLoop 2s linear; */
+    transition: background-image 1s linear;
+}
+.links h2
+{
+    margin-left: 140px;
+    color: white;
+}
+.social-links 
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.social-link 
+{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.social-link img 
+{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.social-link:hover 
+{
+    color: #e8491d;
+}
+.left p{
+    font-size: 16px;
+    text-align: justify;
+}
+.all
+{
+    margin-left: 40px;
+}
+.contact-form button
+{
+    background-color: #e8491d;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 8px;
+    text-decoration: none;
+    border-radius: 7px;
+    margin-left: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: 2px solid;
+}
+.contact-form button:hover
+{
+    background-color: white;
+    color: #e8491d;
+    border: 2px solid;
+}
+.join
+{
+    display: flex;
+}
+.join img
+{
+    padding-right: 30px;
+}

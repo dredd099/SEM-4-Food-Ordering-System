@@ -1,0 +1,44 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* background-image: url('bgimg.png');
+    background-size:contain; */
+}
+.contact-form
+{
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 60px;
+    display: block;
+    text-align: center;
+}
+.contact-form h2
+{
+    font-size: 25px;
+}
+.details
+{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contact-form .btn
+{
+    height: 24px;
+    width: 110px;
+    color: white;
+    background-color: #e8491d;
+    border-radius: 4px;
+    border: 1px solid #e8491d;
+    font-size: 13px;
+    transition: 0.4s ease-in;
+    cursor: pointer;
+}
+.contact-form .btn:hover
+{
+    color: #e8491d;
+    background-color: white;
+}
