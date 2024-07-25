@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_COOKIE['UID'])) {
+    if(!isset($_SESSION['UID'])) {
         header('location: ../SignIn.php');
         die(); // Stop further execution
     }

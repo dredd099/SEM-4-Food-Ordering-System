@@ -1,37 +1,46 @@
 <?php
-include("../dbconn.php");
-if(isset($_SESSION['UID'])) {
-    $ID = $_SESSION['UID'];
-    $res=mysqli_query($conn,"SELECT password FROM user_info WHERE ID='$ID'");
-    $row=mysqli_fetch_assoc($res);
-    $password = $row['password'];
-    if(isset($_POST['submit'])) {
-        if(isset($_POST['cur_pass'], $_POST['new_pass'], $_POST['con_pass'])) {
-            $cur_pass = $_POST['cur_pass'];
-            $new_pass = $_POST['new_pass'];
-            $con_pass = $_POST['con_pass'];
+    include("../dbconn.php");
+    if(isset($_SESSION['UID'])) 
+    {
+        $ID = $_SESSION['UID'];
+        $res=mysqli_query($conn,"SELECT password FROM user_info WHERE ID='$ID'");
+        $row=mysqli_fetch_assoc($res);
+        $password = $row['password'];
+        if(isset($_POST['submit'])) 
+        {
+            if(isset($_POST['cur_pass'], $_POST['new_pass'], $_POST['con_pass'])) 
+            {
+                $cur_pass = $_POST['cur_pass'];
+                $new_pass = $_POST['new_pass'];
+                $con_pass = $_POST['con_pass'];
 
-            if($cur_pass == $password) {
-                if($new_pass == $con_pass) {
-                    $update_user = $conn->prepare("UPDATE `user_info` SET password=? WHERE ID=?");
-                    $update_user->bind_param("si", $new_pass, $ID);
-                    $update_user->execute();
-                    echo '<script>
-                            alert("Password changed successfully");
-                          </script>';
-                } else {
+                if($cur_pass == $password) 
+                {
+                    if($new_pass == $con_pass) 
+                    {
+                        $update_user = $conn->prepare("UPDATE `user_info` SET password=? WHERE ID=?");
+                        $update_user->bind_param("si", $new_pass, $ID);
+                        $update_user->execute();
+                        echo '<script>
+                                alert("Password changed successfully");
+                            </script>';
+                    } 
+                    else 
+                    {
+                        echo'<script>
+                            alert("Passwords do not match");
+                        </script>';
+                    }
+                } 
+                else
+                {
                     echo'<script>
-                        alert("Passwords do not match");
-                    </script>';
+                            alert("Current password incorrect");
+                        </script>';
                 }
-            } else {
-                echo'<script>
-                        alert("Current password incorrect");
-                    </script>';
             }
         }
     }
-}
 ?>
 
 
@@ -66,14 +75,13 @@ if(isset($_SESSION['UID'])) {
                 background-color: white;
                 color: #ab98eb;
             }
-        </style>
-        
+        </style> 
     </head>
     <body>
         <div class="cpass">
                 <h2>CHANGE PASSWORD</h2><br>
 
-            <form action="" method="post" class="passform" onsubmit="return update()">
+            <form action="" method="post" class="passform">
             <p>Current Password<br><br>
                 <input type="password" name="cur_pass" value="" id="show">
             </p>

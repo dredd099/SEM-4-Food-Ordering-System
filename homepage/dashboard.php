@@ -1,115 +1,119 @@
 <?php
-session_start();
-include("../dbconn.php");
-if (!isset($_COOKIE['UID'])) {
-    header('location: SignIn.php');
-    die(); // Stop further execution
-}
+    session_start();
+    include("../dbconn.php");
 
-if (isset($_SESSION['UID'])) {
-    if (isset($_POST['submit'])) {
-        // Check if all required POST variables are set
-        if (isset($_POST['name'], $_POST['email'], $_POST['phone_number'], $_POST['address'])) {
-            // Get the new values from the form
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $phone_number = $_POST['phone_number'];
-            $address = $_POST['address'];
+    if (!isset($_SESSION['UID'])) 
+    {
+        header('location: SignIn.php');
+        die(); // Stop further execution
+    }
 
-            // Fetch the user's current email and phone number, username
-            $stmt = $conn->prepare("SELECT email, phone_number FROM user_info WHERE ID = ?");
-            $stmt->bind_param("s", $_SESSION['UID']);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-          
-            $current_email = $row['email'];
-            $current_phone_number = $row['phone_number'];
-
-
-
-            // Check if the updated email or phone number is the same as the current one
-            if (($email == $current_email || checkUniqueEmail($conn, $email)) &&
-             ($phone_number == $current_phone_number || checkUniquePhoneNumber($conn, $phone_number))) {
-                // Update the user information in the database
-                $update_user = $conn->prepare("UPDATE `user_info` SET name=?, email=?, phone_number=?, address=? WHERE ID=?");
-                $update_user->bind_param("sssss", $name, $email, $phone_number, $address, $_SESSION['UID']);
-                $update_user->execute();
-                echo '<script>
-                        alert("Profile updated successfully");
-                      </script>';
+    if (isset($_SESSION['UID'])) 
+    {
+        if (isset($_POST['submit'])) 
+        {
+            // Check if all required POST variables are set
+            if (isset($_POST['name'], $_POST['email'], $_POST['phone_number'], $_POST['address'])) 
+            {
+                // Get the new values from the form
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $phone_number = $_POST['phone_number'];
+                $address = $_POST['address'];
+            
+                // Fetch the user's current email and phone number
+                $sql = "SELECT email, phone_number FROM user_info WHERE ID = '".$_SESSION['UID']."'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+            
+                $current_email = $row['email'];
+                $current_phone_number = $row['phone_number'];
+            
+                // Check if the updated email or phone number is the same as the current one
+                if (($email == $current_email || checkUniqueEmail($conn, $email)) &&
+                    ($phone_number == $current_phone_number || checkUniquePhoneNumber($conn, $phone_number))) 
+                    {
+                    
+                    // Update the user information in the database
+                    $update_sql = "UPDATE user_info SET name='$name', email='$email', phone_number='$phone_number', address='$address' WHERE ID='".$_SESSION['UID']."'";
+                    $conn->query($update_sql);
+                    echo '<script>
+                            alert("Profile updated successfully");
+                        </script>';
+                } 
+                else 
+                {
+                    if ($email != $current_email && !checkUniqueEmail($conn, $email)) 
+                    {
+                        echo '<script>
+                                alert("Email already in use!!");
+                            </script>';
+                    }
+                    if ($phone_number != $current_phone_number && !checkUniquePhoneNumber($conn, $phone_number)) 
+                    {
+                        echo '<script>
+                                alert("Phone Number already in use!!");
+                            </script>';
+                    }
+                }
             } else {
-                if ($email != $current_email && !checkUniqueEmail($conn, $email)) {
-                    echo '<script>
-                            alert("Email already in use!!");
-                          </script>';
-                }
-                if ($phone_number != $current_phone_number && !checkUniquePhoneNumber($conn, $phone_number)) {
-                    echo '<script>
-                            alert("Phone Number already in use!!");
-                          </script>';
-                }
+                // Handle case where required POST variables are not set
+                echo '<script>
+                        console.log("One or more required fields are missing.");
+                    </script>';
             }
-        } else {
-            // Handle case where required POST variables are not set
-            $message[] = "One or more required fields are missing.";
+            
         }
     }
-}
-if(isset($_GET['remove']))
-{
-    $remove_id=$_GET['remove'];
-    if(mysqli_query($conn, "DELETE FROM `placed_order` WHERE order_id='$remove_id'"))
+    if(isset($_GET['remove']))
     {
-        echo "<script>
-                    alert('Deleted successfully.');
-                </script>";
-        header('location: dashboard.php');
-    }
-}
-if(isset($_GET['remove1']))
-    {
-        $remove_id=$_GET['remove1'];
-        $sql1 = "DELETE FROM `placed_order` WHERE user_id='$remove_id'";
-        $sql2 = "DELETE FROM `transactions` WHERE customer_id='$remove_id'";
-        $sql3 = "DELETE FROM `review` WHERE user_id='$remove_id'";
-        $sql4 = "DELETE FROM `user_info` WHERE ID='$remove_id'";
-
-        if(mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql3) && mysqli_query($conn, $sql4))
+        $remove_id=$_GET['remove'];
+        if(mysqli_query($conn, "DELETE FROM `placed_order` WHERE order_id='$remove_id'"))
         {
             echo "<script>
                         alert('Deleted successfully.');
                     </script>";
-            header('location: ../SignOut.php');
-            session_destroy();
-            exit();
-        }
-        else {
-            echo "<script>alert('Failed to delete account. Please try again.');</script>";
+            header('location: dashboard.php');
         }
     }
+    if(isset($_GET['remove1']))
+        {
+            $remove_id=$_GET['remove1'];
+            $sql1 = "DELETE FROM `placed_order` WHERE user_id='$remove_id'";
+            $sql2 = "DELETE FROM `transactions` WHERE customer_id='$remove_id'";
+            $sql3 = "DELETE FROM `review` WHERE user_id='$remove_id'";
+            $sql4 = "DELETE FROM `user_info` WHERE ID='$remove_id'";
 
-function checkUniqueEmail($conn, $email)
-{
-    $count = 0; // Initialize count
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM user_info WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($count);
-    $stmt->fetch();
-    return $count == 0;
-}
+            if(mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql3) && mysqli_query($conn, $sql4))
+            {
+                echo "<script>
+                            alert('Deleted successfully.');
+                        </script>";
+                header('location: ../SignOut.php');
+                session_destroy();
+                exit();
+            }
+            else {
+                echo "<script>alert('Failed to delete account. Please try again.');</script>";
+            }
+        }
 
-function checkUniquePhoneNumber($conn, $phone_number)
-{
-    $count = 0; // Initialize count
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM user_info WHERE phone_number = ?");
-    $stmt->bind_param("s", $phone_number);
-    $stmt->execute();
-    $stmt->bind_result($count);
-    $stmt->fetch();
-    return $count == 0;
-}
+    function checkUniqueEmail($conn, $email)
+    {
+        $sql = "SELECT COUNT(*) AS count FROM user_info WHERE email = '$email'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'] == 0;
+    }
+
+    function checkUniquePhoneNumber($conn, $phone_number)
+    {
+        $sql = "SELECT COUNT(*) AS count FROM user_info WHERE phone_number = '$phone_number'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['count'] == 0;
+    }
+
 ?>
 <?php
     $query = "select * from user_info";
@@ -202,7 +206,7 @@ function checkUniquePhoneNumber($conn, $phone_number)
                 <h1><?php
                     if(isset($_SESSION['UID'])) {
                         $ID = $_SESSION['UID'];
-                        $sql = "SELECT sum(order_quantity) FROM placed_order where user_id=$ID AND status='pending'";
+                        $sql = "SELECT sum(order_quantity) FROM placed_order where user_id=$ID";
                         $result = mysqli_query($conn, $sql);  
                         while($row = mysqli_fetch_array($result))
                             {
@@ -229,7 +233,7 @@ function checkUniquePhoneNumber($conn, $phone_number)
                 <h1><?php
                     if(isset($_SESSION['UID'])) {
                         $ID = $_SESSION['UID'];
-                        $sql = "SELECT sum(order_quantity) FROM placed_order where user_id=$ID AND status='completed'";
+                        $sql = "SELECT sum(order_quantity) FROM completed_orders where user_id=$ID ";
                         $result = mysqli_query($conn, $sql);  
                         while($row = mysqli_fetch_array($result))
                             {
@@ -262,7 +266,7 @@ function checkUniquePhoneNumber($conn, $phone_number)
         </div>
         <form action="" method="post" class="upform" onsubmit="return update()">
             <p>Name<br><br>
-                <input type="text" name="name" value="<?php
+                <input type="text" name="name" id="name" value="<?php
                 // Check if user is logged in
                 if(isset($_SESSION['UID'])) {
                     $ID = $_SESSION['UID'];
@@ -407,7 +411,7 @@ function checkUniquePhoneNumber($conn, $phone_number)
             <div class="delete">
                 <h2 style="color: red;">Delete Account</h2>
                 <hr>
-                <p>Once your delete your account, there is not going back. Please be certain before you proceed.</p>
+                <p>Once your delete your account, there is no going back. Please be certain before you proceed.</p>
                 <form><a href="dashboard.php?remove1=<?php echo $_SESSION['UID']?>" class="delete-btn" 
                                 onclick="return confirm('Are you sure you want to delete your account?');">Delete your account</a>
                             </form>
@@ -438,6 +442,18 @@ function checkUniquePhoneNumber($conn, $phone_number)
         if (!/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9.-]+)\.([a-z]{2,20})(\.[a-z]{2,20})?$/.test(value)) 
         {
             e.target.setCustomValidity('Your email is not in proper format.');
+        } 
+        else 
+        {
+            e.target.setCustomValidity('');
+        }
+    });
+    document.getElementById('name').addEventListener('input', function (e) 
+    {
+        const value = e.target.value;
+        if (!/^[a-z ,.'-]+$/i.test(value)) 
+        {
+            e.target.setCustomValidity('Your name is not in proper format.');
         } 
         else 
         {

@@ -1,10 +1,11 @@
 <?php
+    include '../dbconn.php';
     session_start();
-    if(!isset($_SESSION['UID'])) {
+    if(!isset($_SESSION['UID'])) 
+    {
         header('location: SignIn.php');
         die();
     }
-    include '../dbconn.php';
 
     if(isset($_POST['submit']))
     {
@@ -32,7 +33,7 @@
 ?>
 <html>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <title>Start a conversation</title>
         <link rel="stylesheet" href="style/Convo.css" type="text/css">
@@ -55,13 +56,16 @@
                     <tr><td><label for="name" required>Name</label></td>
                     <td><input type="text" id="name" name="name" value="<?php
                             // Check if user is logged in
-                            if(isset($_SESSION['UID'])) {
+                            if(isset($_SESSION['UID'])) 
+                            {
                                 $ID = $_SESSION['UID'];
                                 $res=mysqli_query($conn,"SELECT name FROM user_info WHERE ID='$ID'");
                                 $row=mysqli_fetch_assoc($res);
                                 $name = $row['name'];
                                 echo $name;
-                            } else {
+                            } 
+                            else 
+                            {
                                 echo '<p>User not logged in.</p>';
                             }
                             ?>" required></td></tr>
@@ -69,14 +73,17 @@
                     <tr><td><label for="email" required>Email</label></td>
                     <td><input type="email" id="email" name="email" value="<?php
                             // Check if user is logged in
-                            if(isset($_SESSION['UID'])) {
+                            if(isset($_SESSION['UID'])) 
+                            {
                                 // Fetch and display user email
                                 $ID = $_SESSION['UID'];
                                 $res=mysqli_query($conn,"SELECT email FROM user_info WHERE ID='$ID'");
                                 $row=mysqli_fetch_assoc($res);
                                 $email = $row['email'];
                                 echo $email;
-                            } else {
+                            } 
+                            else 
+                            {
                                 echo '<p>User not logged in.</p>';
                             }
                             ?>" required></td></tr>
@@ -84,7 +91,8 @@
                     <tr><td><label for="number" required>Phone Number</label></td>
                     <td><input type="number" id="num" maxlength="10" name="number" value="<?php
                             // Check if user is logged in
-                            if(isset($_SESSION['UID'])) {
+                            if(isset($_SESSION['UID'])) 
+                            {
                                 // Fetch and display user email
                                 $conn=mysqli_connect('localhost','root','','diablosignproto1');
                                 $ID = $_SESSION['UID'];
@@ -92,7 +100,9 @@
                                 $row=mysqli_fetch_assoc($res);
                                 $phone_number = $row['phone_number'];
                                 echo $phone_number;
-                            } else {
+                            } 
+                            else 
+                            {
                                 echo '<p>User not logged in.</p>';
                             }
                             ?>" required></td></tr>
@@ -129,6 +139,18 @@
                 if (!/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9.-]+)\.([a-z]{2,20})(\.[a-z]{2,20})?$/.test(value)) 
                 {
                     e.target.setCustomValidity('Your email is not in proper format.');
+                } 
+                else 
+                {
+                    e.target.setCustomValidity('');
+                }
+            });
+            document.getElementById('name').addEventListener('input', function (e) 
+            {
+                const value = e.target.value;
+                if (!/^[a-z ,.'-]+$/i.test(value)) 
+                {
+                    e.target.setCustomValidity('Your name is not in proper format.');
                 } 
                 else 
                 {

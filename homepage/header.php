@@ -15,19 +15,19 @@
         header {
             position: fixed;
             top: 0;
-            z-index: 1000;
+            left: 0;
+            width: 100%;
+            height: 80px;
             display: flex;
             color: black;
             align-items: center;
             justify-content: space-between;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
-            background-color: rgba(0,0,0, 0.65);
+            background-color: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(8px);
-            width: 100%;
             transition: top 0.3s;
-            /* background-image: url('doodle.jpg'); */
-            /* background-color: transparent; */
+            z-index: 1000;
         }
         header img {
             margin-left: 10px;
@@ -243,18 +243,6 @@
 </nav>
 
     </header>
-    <!-- <script>
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function() {
-            var currentScrollPos = window.pageYOffset;
-            if (prevScrollpos > currentScrollPos || currentScrollPos === 0) {
-                document.body.style.paddingTop = "100px"; // Adjusted padding-top
-            } else {
-                document.body.style.paddingTop = "20px"; // Adjusted padding-top
-            }
-            prevScrollpos = currentScrollPos;
-        }
-     </script> -->
      <script>
         let subMenu=document.getElementById("subMenu");
 
