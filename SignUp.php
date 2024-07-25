@@ -33,14 +33,14 @@
             {
                 echo '<script>
                     window.location.href="SignUp.php"
-                    alert("Email already exists!");
+                    alert("Email already in use!");
                 </script>';
             }
             if($count_phone_number>0)
             {
                 echo '<script>
                     window.location.href="SignUp.php"
-                    alert("Phone Number already exists!");
+                    alert("Phone Number already in use!");
                 </script>';
             }
         }
@@ -235,6 +235,19 @@
                 if (!/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9.-]+)\.([a-z]{2,20})(\.[a-z]{2,20})?$/.test(value)) 
                 {
                     e.target.setCustomValidity('Your email is not in proper format.');
+                } 
+                else 
+                {
+                    e.target.setCustomValidity('');
+                }
+            });
+
+            document.getElementById('name').addEventListener('input', function (e) 
+            {
+                const value = e.target.value;
+                if (!/^[a-z ,.'-]+$/i.test(value)) 
+                {
+                    e.target.setCustomValidity('Your name is not in proper format.');
                 } 
                 else 
                 {
